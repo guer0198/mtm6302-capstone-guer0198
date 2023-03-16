@@ -1,0 +1,31 @@
+body{
+    font-family: 'Oswald', sans-serif;
+    font-size: large;
+    width: 800px;
+    margin: auto;
+}
+
+header{
+    margin-top: 25px;
+}
+
+.whitebox{
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.bluebox{
+    background-color: #4c6ef5;
+    color: white;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+section{
+    background-image: url('images/zabdiel-gonzalez-6XU8Xbrt95M-unsplash.jpg');
+    background-attachment: fixed; 
+    background-size: 100%;
+    color: white;
+    text-align: center;
+}
