@@ -37,7 +37,7 @@ main{
     margin: auto;
     margin-top: 50px;
     margin-bottom: 50px;
-    width: 800px;
+    max-width: 800px;
     display: flex;
     align-items: center; 
     justify-content: center;
@@ -89,15 +89,19 @@ main{
 .bluebox h2{
     color: white;
 }
-.card{
+.american{
     display: flex;
     flex-direction: row;
+    align-items: center;
     justify-content:center;
-    margin-top: 20px;
-    width: 200px;
-    max-width: 100%;
 }
 
+.card{
+    margin: 10px;
+    text-align: center;
+    border: 0;
+    font-size: 30px;
+}
 .card img{
     width: 200px;
 }
@@ -147,13 +151,15 @@ section img{
 }
 
 button{
-        background-color: blue;
+        background-color: #4c6ef5;
         color: white;
         padding: 10px 20px;
         border: none;
         border-radius: 4px;
         font-size: 16px;
         cursor: pointer;
+        width: min-content;
+
 }
 
 footer{
