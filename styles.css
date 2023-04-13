@@ -227,6 +227,14 @@ footer ul{
     color: #fff;
 }
 
-#next{
+#next-btn{
     display: none;
 }
+
+.correct{
+    background: #00e664;
+}
+.incorrect{
+    background: red;
+}
+
