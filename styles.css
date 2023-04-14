@@ -1,6 +1,7 @@
 body{
     font-family: 'Metrophobic', sans-serif;
     margin: auto;
+    box-sizing: border-box;
 }
 
 nav img{
@@ -194,13 +195,17 @@ footer ul{
     width: 500px;
 }
 
-.quiz{
+.app{
     background-color: #fff;
     width: 90%;
     max-width: 600px;
     margin: 100px auto 0;
     border-radius: 10px;
     padding: 30px;
+}
+
+.quiz{
+    padding: 20px 0;
 }
 
 .quiz h2{
@@ -222,13 +227,12 @@ footer ul{
     transition: all 0.3s;
 }
 
-.btn:hover{
+.btn:hover:not([disabled]){
     background-color: #222;
     color: #fff;
 }
-
-#next-btn{
-    display: none;
+.btn:disabled{
+    cursor: no-drop;
 }
 
 .correct{
