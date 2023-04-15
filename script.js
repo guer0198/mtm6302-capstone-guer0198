@@ -129,3 +129,16 @@
  })
 
  startQuiz();
+
+ // modal element
+let modal = document.getElementById("modal");
+let btnModal = document.getElementById("soccer");
+let span = document.getElementsByClassName("close")[0];
+
+btnModal.onclick = function() {
+  modal.style.display = "block";
+}
+
+span.onclick = function() {
+  modal.style.display = "none";
+}
