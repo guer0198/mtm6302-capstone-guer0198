@@ -46,9 +46,110 @@
     },
  ];
 
+ // QUIZ NBA
+
+const nba = [
+    {
+        question: "Who is the all-time leading scorer in the NBA?",
+        answers: [
+            {text: "Nikola Jokic", correct: false},
+            {text: "LeBron James", correct: true},
+            {text: "Stephen Curry", correct: false},
+            {text: "Michael Jordan", correct: false},
+        ]
+    },
+    {
+        question: "Who is the all-time leader in 3-pointers made in the NBA?",
+        answers: [
+            {text: "Shaquille O'Neal", correct: false},
+            {text: "LeBron James", correct: false},
+            {text: "Stephen Curry", correct: true},
+            {text: "Michael Jordan", correct: false},
+        ]
+    },
+    {
+        question: "How many NBA championships have the Los Angeles Lakers won?",
+        answers: [
+            {text: "5", correct: false},
+            {text: "10", correct: false},
+            {text: "13", correct: false},
+            {text: "17", correct: true},
+        ]
+    },
+    {
+        question: "Who is the all-time leader in free throws made in a single NBA season?",
+        answers: [
+            {text: "Shaquille O'Neal", correct: true},
+            {text: "LeBron James", correct: false},
+            {text: "Stephen Curry", correct: false},
+            {text: "Michael Jordan", correct: false},
+        ]
+    },
+    {
+        question: "Who is the all-time leader in points per game in the NBA?",
+        answers: [
+            {text: "Shaquille O'Neal", correct: false},
+            {text: "LeBron James", correct: false},
+            {text: "Stephen Curry", correct: false},
+            {text: "Michael Jordan", correct: true},
+        ]
+    },
+ ];
+
+ // QUIZ NFL
+
+const nfl = [
+    {
+        question: "When was the NFL founded?",
+        answers: [
+            {text: "1935", correct: false},
+            {text: "1920", correct: true},
+            {text: "1950", correct: false},
+            {text: "1940", correct: false},
+        ]
+    },
+    {
+        question: "Who won the first Super Bowl?",
+        answers: [
+            {text: "Kansas City Chiefs", correct: false},
+            {text: "Oakland Raiders", correct: false},
+            {text: "Green Bay Packers", correct: true},
+            {text: "Chicago Bears", correct: false},
+        ]
+    },
+    {
+        question: "Who is the youngest player in NFL history?",
+        answers: [
+            {text: "Richard Sligh", correct: false},
+            {text: "William The Refrigerator", correct: false},
+            {text: "Brett Favre", correct: false},
+            {text: "Fred Becker", correct: true},
+        ]
+    },
+    {
+        question: "Who has the most receiving yards in a single game?",
+        answers: [
+            {text: "Floyd Little", correct: true},
+            {text: "Kurt Warner", correct: false},
+            {text: "Joe Kapp", correct: false},
+            {text: "Drew Brees", correct: false},
+        ]
+    },
+    {
+        question: "Who has the most interceptions in a single season?",
+        answers: [
+            {text: "Eric Dickerson", correct: false},
+            {text: "Michael Strahan", correct: false},
+            {text: "Cristiano Ronaldo", correct: false},
+            {text: "Paul Krause", correct: true},
+        ]
+    },
+ ];
+
  const questionElement = document.getElementById("question");
  const answerButtons = document.getElementById("answer-buttons");
  const nextButton = document.getElementById("next-btn");
+
 
  let currentQuestionIndex = 0;
  let score = 0;
@@ -133,12 +234,99 @@
  // modal element
 let modal = document.getElementById("modal");
 let btnModal = document.getElementById("soccer");
+let btnModalNba = document.getElementById("nba");
+let btnModalNfl = document.getElementById("nfl");
 let span = document.getElementsByClassName("close")[0];
 
 btnModal.onclick = function() {
   modal.style.display = "block";
 }
+btnModalNba.onclick = function() {
+    modal.style.display = "block";
+}
+btnModalNfl.onclick = function() {
+    modal.style.display = "block";
+}
 
 span.onclick = function() {
   modal.style.display = "none";
 }
+
+// NBA QUIZ
+
+ function startQuizNba(){
+    currentQuestionIndex = 0;
+    score = 0;
+    nextButton.innerHTML = "Next";
+    showQuestionNba();
+ }
+
+ function showQuestionNba(){
+    resetState();
+    let currentQuestion = nba[currentQuestionIndex];
+    let questionNo = currentQuestionIndex + 1;
+    questionElement.innerHTML = questionNo + ". " + currentQuestion.question;
+
+    currentQuestion.answers.forEach(answer => {
+        const button = document.createElement("button");
+        button.innerHTML = answer.text;
+        button.classList.add("btn");
+        answerButtons.appendChild(button);
+        if(answer.correct){
+            button.dataset.correct = answer.correct;
+        }
+        button.addEventListener("click", selectAnswer);
+    });
+ }
+
+ function resetState(){
+    nextButton.style.display = "none";
+    while(answerButtons.firstElementChild){
+        answerButtons.removeChild(answerButtons.firstChild);
+    }
+ }
+
+ function selectAnswer(e){
+    const selectedBtn = e.target;
+    const isCorrect = selectedBtn.dataset.correct === "true";
+    if(isCorrect){
+        selectedBtn.classList.add("correct");
+        score++;
+    }else{
+        selectedBtn.classList.add("incorrect");
+    }
+
+    Array.from(answerButtons.children).forEach(button => {
+        if(button.dataset.correct === "true"){
+            button.classList.add("correct");
+        }
+        button.disabled = true;
+    });
+    nextButton.style.display = "inline";
+ }
+
+ function showScoreNba(){
+    resetState();
+    questionElement.innerHTML = `You scored ${score} out of ${nba.length}!`;
+    nextButton.innerHTML = "Play Again";
+    nextButton.style.display = "block";
+ }
+
+ function handleNextButton(){
+    currentQuestionIndex++;
+    if(currentQuestionIndex < nba.length){
+        showQuestionNba();
+    }else{
+        showScore();
+    }
+ }
+
+ nextButton.addEventListener("click", ()=>{
+    if(currentQuestionIndex < nba.length){
+        handleNextButton();
+    }else{
+        startQuiz();
+    }
+ })
+
+ startQuiz();
