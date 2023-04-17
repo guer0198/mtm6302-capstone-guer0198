@@ -197,7 +197,7 @@ footer ul{
 
 /* Quiz styles */
 
-.app, .appNba{
+.app, .appNba, .appNfl{
     background-color: #fff;
     width: 90%;
     max-width: 600px;
@@ -206,17 +206,17 @@ footer ul{
     padding: 30px;
 }
 
-.quiz, .quizNba{
+.quiz, .quizNba, .quizNfl{
     padding: 20px 0;
 }
 
-.quiz h2, .quizNba h2{
+.quiz h2, .quizNba h2, .quizNfl h2{
     font-size: 25px;
     border-bottom: 1px solid #333;
     padding-bottom: 30px;
 }
 
-.btn, .btnNba{
+.btn, .btnNba, .btnNfl{
     background-color: #fff;
     color: #222;
     font-weight: 500;
@@ -245,6 +245,14 @@ footer ul{
     cursor: no-drop;
 }
 
+.btnNfl:hover:not([disabled]){
+    background-color: #222;
+    color: #fff;
+}
+.btnNfl:disabled{
+    cursor: no-drop;
+}
+
 .correct{
     background: #00e664;
 }
@@ -253,7 +261,7 @@ footer ul{
 }
 
 /* Modal styles */
-.modal, .modalNba {
+.modal{
     display: none;
     position: fixed;
     z-index: 1;
@@ -264,8 +272,21 @@ footer ul{
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.4);
   }
+
+  .modalNba, .modalNfl{
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    margin-top: 50px;
+  }
   
-  .modal-content, .modal-contentNba {
+  .modal-content, .modal-contentNba, .modal-contentNfl {
     background-color: #fefefe;
     margin: 15% auto;
     padding: 20px;
@@ -273,7 +294,7 @@ footer ul{
     width: 80%;
   }
   
-  .close {
+  .close, .closeNba, .closeNfl {
     color: #aaa;
     float: right;
     font-size: 28px;
@@ -281,28 +302,8 @@ footer ul{
   }
   
   .close:hover,
-  .close:focus {
+  .close:focus, .closeNba:hover, .closeNba:focus, .closeNfl:hover, .closeNfl:focus {
     color: black;
     text-decoration: none;
     cursor: pointer;
-  }
-  
-  .modalNba {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
-  }
-  
-  .modal-contentNba {
-    background-color: #fefefe;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
   }
