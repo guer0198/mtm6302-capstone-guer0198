@@ -50,8 +50,8 @@
 
 const nba = [
     {
-        question: "Who is the all-time leading scorer in the NBA?",
-        answers: [
+        questionNba: "Who is the all-time leading scorer in the NBA?",
+        answersNba: [
             {text: "Nikola Jokic", correct: false},
             {text: "LeBron James", correct: true},
             {text: "Stephen Curry", correct: false},
@@ -59,8 +59,8 @@ const nba = [
         ]
     },
     {
-        question: "Who is the all-time leader in 3-pointers made in the NBA?",
-        answers: [
+        questionNba: "Who is the all-time leader in 3-pointers made in the NBA?",
+        answersNba: [
             {text: "Shaquille O'Neal", correct: false},
             {text: "LeBron James", correct: false},
             {text: "Stephen Curry", correct: true},
@@ -68,8 +68,8 @@ const nba = [
         ]
     },
     {
-        question: "How many NBA championships have the Los Angeles Lakers won?",
-        answers: [
+        questionNba: "How many NBA championships have the Los Angeles Lakers won?",
+        answersNba: [
             {text: "5", correct: false},
             {text: "10", correct: false},
             {text: "13", correct: false},
@@ -77,8 +77,8 @@ const nba = [
         ]
     },
     {
-        question: "Who is the all-time leader in free throws made in a single NBA season?",
-        answers: [
+        questionNba: "Who is the all-time leader in free throws made in a single NBA season?",
+        answersNba: [
             {text: "Shaquille O'Neal", correct: true},
             {text: "LeBron James", correct: false},
             {text: "Stephen Curry", correct: false},
@@ -86,8 +86,8 @@ const nba = [
         ]
     },
     {
-        question: "Who is the all-time leader in points per game in the NBA?",
-        answers: [
+        questionNba: "Who is the all-time leader in points per game in the NBA?",
+        answersNba: [
             {text: "Shaquille O'Neal", correct: false},
             {text: "LeBron James", correct: false},
             {text: "Stephen Curry", correct: false},
@@ -233,100 +233,115 @@ const nfl = [
 
  // modal element
 let modal = document.getElementById("modal");
+let modalNba = document.getElementById("modalNba");
 let btnModal = document.getElementById("soccer");
 let btnModalNba = document.getElementById("nba");
 let btnModalNfl = document.getElementById("nfl");
 let span = document.getElementsByClassName("close")[0];
+let spanNba = document.getElementsByClassName("closeNba")[0];
 
 btnModal.onclick = function() {
   modal.style.display = "block";
 }
+
 btnModalNba.onclick = function() {
-    modal.style.display = "block";
+    modalNba.style.display = "block";
 }
 btnModalNfl.onclick = function() {
-    modal.style.display = "block";
+    modalNfl.style.display = "block";
 }
 
 span.onclick = function() {
   modal.style.display = "none";
 }
 
+spanNba.onclick = function() {
+    modalNba.style.display = "none";
+}
+
 // NBA QUIZ
 
+const questionElementNba = document.getElementById("questionNba");
+const answerButtonsNba = document.getElementById("answer-buttonsNba");
+const nextButtonNba = document.getElementById("next-btnNba");
+
+
+ let currentQuestionIndexNba = 0;
+ let scoreNba = 0;
+
  function startQuizNba(){
-    currentQuestionIndex = 0;
-    score = 0;
-    nextButton.innerHTML = "Next";
+    currentQuestionIndexNba = 0;
+    scoreNba = 0;
+    nextButtonNba.innerHTML = "Next";
     showQuestionNba();
  }
 
  function showQuestionNba(){
-    resetState();
-    let currentQuestion = nba[currentQuestionIndex];
-    let questionNo = currentQuestionIndex + 1;
-    questionElement.innerHTML = questionNo + ". " + currentQuestion.question;
+    resetStateNba();
+    let currentQuestionNba = nba[currentQuestionIndexNba];
+    let questionNoNba = currentQuestionIndexNba + 1;
+    questionElementNba.innerHTML = questionNoNba + ". " + currentQuestionNba.questionNba;
 
-    currentQuestion.answers.forEach(answer => {
-        const button = document.createElement("button");
-        button.innerHTML = answer.text;
-        button.classList.add("btn");
-        answerButtons.appendChild(button);
+    currentQuestionNba.answersNba.forEach(answer => {
+        const buttonNba = document.createElement("buttonNba");
+        buttonNba.innerHTML = answer.text;
+        buttonNba.classList.add("btnNba");
+        answerButtonsNba.appendChild(buttonNba);
         if(answer.correct){
-            button.dataset.correct = answer.correct;
+            buttonNba.dataset.correct = answer.correct;
         }
-        button.addEventListener("click", selectAnswer);
+        buttonNba.addEventListener("click", selectAnswer);
     });
  }
 
- function resetState(){
-    nextButton.style.display = "none";
-    while(answerButtons.firstElementChild){
-        answerButtons.removeChild(answerButtons.firstChild);
+ function resetStateNba(){
+    nextButtonNba.style.display = "none";
+    while(answerButtonsNba.firstElementChild){
+        answerButtonsNba.removeChild(answerButtonsNba.firstChild);
     }
  }
 
- function selectAnswer(e){
-    const selectedBtn = e.target;
-    const isCorrect = selectedBtn.dataset.correct === "true";
+ function selectAnswerNba(e){
+    const selectedBtnNba = e.target;
+    const isCorrect = selectedBtnNba.dataset.correct === "true";
     if(isCorrect){
-        selectedBtn.classList.add("correct");
-        score++;
+        selectedBtnNba.classList.add("correct");
+        scoreNba++;
     }else{
-        selectedBtn.classList.add("incorrect");
+        selectedBtnNba.classList.add("incorrect");
     }
 
-    Array.from(answerButtons.children).forEach(button => {
-        if(button.dataset.correct === "true"){
-            button.classList.add("correct");
+    Array.from(answerButtonsNba.children).forEach(buttonNba => {
+        if(buttonNba.dataset.correct === "true"){
+            buttonNba.classList.add("correct");
         }
-        button.disabled = true;
+        buttonNba.disabled = true;
     });
-    nextButton.style.display = "inline";
+    nextButtonNba.style.display = "inline";
  }
 
  function showScoreNba(){
-    resetState();
-    questionElement.innerHTML = `You scored ${score} out of ${nba.length}!`;
-    nextButton.innerHTML = "Play Again";
-    nextButton.style.display = "block";
+    resetStateNba();
+    questionElementNba.innerHTML = `You scored ${scoreNba} out of ${nba.length}!`;
+    nextButtonNba.innerHTML = "Play Again";
+    nextButtonNba.style.display = "block";
  }
 
- function handleNextButton(){
-    currentQuestionIndex++;
-    if(currentQuestionIndex < nba.length){
+ function handleNextButtonNba(){
+    currentQuestionIndexNba++;
+    if(currentQuestionIndexNba < nba.length){
         showQuestionNba();
     }else{
-        showScore();
+        showScoreNba();
     }
  }
 
- nextButton.addEventListener("click", ()=>{
+ nextButtonNba.addEventListener("click", ()=>{
     if(currentQuestionIndex < nba.length){
-        handleNextButton();
+        handleNextButtonNba();
     }else{
-        startQuiz();
+        startQuizNba();
     }
  })
 
- startQuiz();
+ startQuizNba();
