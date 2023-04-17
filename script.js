@@ -436,7 +436,7 @@ const nextButtonNfl = document.getElementById("next-btnNfl");
 
 
 let modalNfl = document.getElementById("modalNfl");
-let btnModalNfl = document.getElementById("callnfl");
+let btnModalNfl = document.getElementById("nfl");
 let spanNfl = document.getElementsByClassName("closeNfl")[0];
 
 

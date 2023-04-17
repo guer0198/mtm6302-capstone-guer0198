@@ -3,12 +3,10 @@ Enrico Guerrero de Andrade |
 Student Number – 041048723 |
 Capstone Project - Quiz Site
 
-I added the Andrade_Enrico_CapstoneMockuo.pdf with the project mockup at root bin folder.
+For this project my goal was to create a 5 questions quiz for each subject and at the end show to the user his score.
 
-For this project I choose to work with welcoming colours. The design was built upon white, black, and blue, to make the user confortable to answer the question without having the feeling that they need to rush to accomplish the entire quiz.
-The main color is blue also because it is often seen on sports teams jerseys. 
+To achieve that I created a list with questions and answers on Javascript, and a function to swap the Html div container text with the list content.
 
-The font face for this project is GOTHAM family, because is easy to read even in different sizes.
-I went with a straighforward NAV BAR, focused in high contrast, and adding theh quizes categories on the buttons. If the user open the website on a mobile, the NAV BAR will present a hamburguer menu with the website logo beside.
+My biggest challenge was to reuse the code from the first quiz(soccer) for the others.I recon that the way that I wrote the code is not the most efficient, I would like to use fewer lines of code but unfortunelly my my attempts didn't work.
 
-A play button was added to start the quiz, and the footer has the menu buttons replicated to make the navigation faster.
+I also used a function to add +1 to the question index until the value was greater than 5, which is the numbers of questions that I have, so after a button with the final score appears, ending the quiz.
