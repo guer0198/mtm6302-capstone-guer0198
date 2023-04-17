@@ -324,7 +324,7 @@ const nextButtonNba = document.getElementById("next-btnNba");
  }
 
  nextButtonNba.addEventListener("click", ()=>{
-    if(currentQuestionIndex < nba.length){
+    if(currentQuestionIndexNba < nba.length){
         handleNextButtonNba();
     }else{
         startQuizNba();
@@ -372,8 +372,8 @@ const nextButtonNfl = document.getElementById("next-btnNfl");
 
     currentQuestionNfl.answersNfl.forEach(answer => {
         const buttonNfl = document.createElement("button");
-        buttonNba.innerHTML = answer.text;
-        buttonNba.classList.add("btnNfl");
+        buttonNfl.innerHTML = answer.text;
+        buttonNfl.classList.add("btnNfl");
         answerButtonsNfl.appendChild(buttonNfl);
         if(answer.correct){
             buttonNfl.dataset.correct = answer.correct;
@@ -425,7 +425,7 @@ const nextButtonNfl = document.getElementById("next-btnNfl");
  }
 
  nextButtonNfl.addEventListener("click", ()=>{
-    if(currentQuestionIndex < nfl.length){
+    if(currentQuestionIndexNfl < nfl.length){
         handleNextButtonNfl();
     }else{
         startQuizNfl();
